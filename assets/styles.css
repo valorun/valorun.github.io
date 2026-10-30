@@ -743,6 +743,54 @@ em {
   color: #a7b3bb;
 }
 
+.featured-project--reverse .featured-project-copy {
+  order: 2;
+}
+
+.featured-project--reverse .featured-project-visual {
+  order: 1;
+  border-right: 1px solid var(--ink);
+  border-left: 0;
+}
+
+.featured-project--caius {
+  border-color: #c6d3cd;
+  background: #f0ece3;
+}
+
+.featured-project--caius .featured-project-visual {
+  border-color: #b9ccc4;
+  background-color: #dfeae5;
+  background-image: linear-gradient(rgb(20 40 63 / 4%) 1px, transparent 1px), linear-gradient(90deg, rgb(20 40 63 / 4%) 1px, transparent 1px);
+}
+
+.featured-project--caius .featured-project-visual::before {
+  border-color: rgb(47 107 100 / 32%);
+}
+
+.featured-project--caius .featured-project-visual::after {
+  border-color: rgb(20 40 63 / 12%);
+}
+
+.featured-project--caius .featured-visual-label,
+.featured-project--caius .featured-visual-caption {
+  color: #2f6b64;
+}
+
+.featured-project--caius .featured-visual-label span,
+.featured-project--caius .featured-visual-caption {
+  color: #54716c;
+}
+
+.featured-project--caius .featured-visual-caption {
+  border-top-color: #b9ccc4;
+}
+
+.featured-logo--caius {
+  width: min(44%, 190px);
+  filter: drop-shadow(0 12px 24px rgb(5 5 33 / 18%));
+}
+
 .experience-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1554,10 +1602,16 @@ em {
     font-size: .81rem;
   }
 
-  .featured-project-visual {
+  .featured-project--reverse .featured-project-copy {
+    order: initial;
+  }
+
+  .featured-project-visual,
+  .featured-project--reverse .featured-project-visual {
     order: -1;
     min-height: 230px;
     padding: 16px 19px;
+    border-right: 0;
     border-bottom: 1px solid var(--ink);
     border-left: 0;
   }

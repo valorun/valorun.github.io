@@ -18,6 +18,8 @@ class Page(HTMLParser):
         self.nodes: list[tuple[str, dict[str, str | None]]] = []
         self.ids: set[str] = set()
         self.text: list[str] = []
+        self.articles: list[list[str]] = []
+        self.article_stack: list[list[str]] = []
         self.json_data = ""
         self.in_json = False
         self.feed(path.read_text(encoding="utf-8"))
@@ -26,6 +28,9 @@ class Page(HTMLParser):
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         self.nodes.append((tag, attrs))
+        if tag == "article":
+            self.articles.append([])
+            self.article_stack.append(self.articles[-1])
         if identifier := attrs.get("id"):
             assert identifier not in self.ids, f"{self.path}: id dupliqué {identifier}"
             self.ids.add(identifier)
@@ -35,11 +40,15 @@ class Page(HTMLParser):
             self.in_json = True
 
     def handle_endtag(self, tag):
+        if tag == "article":
+            self.article_stack.pop()
         if tag == "script":
             self.in_json = False
 
     def handle_data(self, data):
         self.text.append(data)
+        for article in self.article_stack:
+            article.append(data)
         if self.in_json:
             self.json_data += data
 
@@ -83,7 +92,29 @@ for path, page in pages.items():
         assert len(page.elements(tag)) == 1, f"{path}: un seul {tag} attendu"
     assert "Valorun OÜ" in "".join(page.text)
     assert len(page.elements("h2")) == 5, f"{path}: section manquante"
-    assert len(page.elements("article")) == 7, f"{path}: offre ou projet manquant"
+    assert len(page.elements("article")) == 8, f"{path}: offre ou projet manquant"
+    article_texts = [" ".join(" ".join(parts).split()) for parts in page.articles]
+    caius_articles = [text for text in article_texts if "CAIUS" in text]
+    assert len(caius_articles) == 1, f"{path}: un seul projet CAIUS attendu"
+    expected_contribution = {
+        "fr": (
+            "Expertises mobilisées",
+            "conception et développement de l’IA",
+            "connaissances juridiques",
+            "moteur de recommandation",
+            "traitement de données à grande échelle",
+        ),
+        "en": (
+            "Areas of expertise",
+            "AI design and development",
+            "legal domain knowledge",
+            "recommendation engines",
+            "large-scale data processing",
+        ),
+    }[expected_language]
+    for term in expected_contribution:
+        assert term.casefold() in caius_articles[0].casefold(), f"{path}: contribution CAIUS manquante : {term}"
+    assert "Ronan Collier" not in caius_articles[0], f"{path}: attribution nominative inattendue dans le projet CAIUS"
     assert any(meta.get("name") == "description" and meta.get("content") for meta in page.elements("meta"))
     assert any(meta.get("name") == "viewport" for meta in page.elements("meta"))
     assert {"services", "experience", "approach", "about", "contact", "main-content"} <= page.ids
@@ -123,6 +154,7 @@ for path, page in pages.items():
         "https://www.linkedin.com/in/ronan-collier/",
         "https://valorun.github.io/corvus-website/index.html",
         "https://clarius-robot.com/",
+        "https://www.caius.fr/",
     } <= {link.get("href") for link in page.elements("a")}
     print(f"OK {path.relative_to(ROOT)} — langue, contenu, métadonnées, liens et accessibilité structurelle")
 

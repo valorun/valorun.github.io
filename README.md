@@ -6,7 +6,7 @@ Site vitrine statique bilingue de **Valorun OÜ**, conçu pour GitHub Pages. **A
 - Anglais : `en/index.html`
 - Mise en page et ressources partagées : `assets/`
 - Contact : `valorun@proton.me`
-- Projets cités : [Corvus](https://valorun.github.io/corvus-website/index.html) et les [robots de la Confrérie du boulon](https://clarius-robot.com/)
+- Projets cités : [Corvus](https://valorun.github.io/corvus-website/index.html), [CAIUS](https://www.caius.fr/) et les [robots de la Confrérie du boulon](https://clarius-robot.com/)
 
 ## Voir le site en local
 
