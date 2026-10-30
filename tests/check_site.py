@@ -86,6 +86,9 @@ def local_reference(source: Path, reference: str) -> Path | None:
 
 
 for path, page in pages.items():
+    source = path.read_text(encoding="utf-8")
+    assert "\u2014" not in source, f"{path}: tiret cadratin inattendu"
+    assert "%E2%80%94" not in source.upper(), f"{path}: tiret cadratin encodé inattendu"
     expected_language = "en" if path.parent.name == "en" else "fr"
     assert page.elements("html")[0]["lang"] == expected_language
     for tag in ("title", "h1", "main"):
@@ -184,7 +187,7 @@ for path, page in pages.items():
         "https://www.caius.fr/",
         "https://www.tugitark.com/",
     } <= {link.get("href") for link in page.elements("a")}
-    print(f"OK {path.relative_to(ROOT)} — langue, contenu, métadonnées, liens et accessibilité structurelle")
+    print(f"OK {path.relative_to(ROOT)} · langue, contenu, métadonnées, liens et accessibilité structurelle")
 
 assert pages[ROOT / "index.html"].ids == pages[ROOT / "en/index.html"].ids, "Ancres FR/EN différentes"
 css_path = ROOT / "assets/styles.css"
@@ -196,4 +199,4 @@ for licence in ("DM-Sans-OFL.txt", "Instrument-Serif-OFL.txt"):
     assert (ROOT / "assets/fonts" / licence).is_file(), f"Licence absente : {licence}"
 assert (ROOT / ".nojekyll").is_file(), "Configuration GitHub Pages absente"
 total = sum(path.stat().st_size for path in resources)
-print(f"OK {len(resources)} ressources locales vérifiées — {total / 1024:.0f} Kio pour les deux pages et leurs ressources partagées")
+print(f"OK {len(resources)} ressources locales vérifiées · {total / 1024:.0f} Kio pour les deux pages et leurs ressources partagées")

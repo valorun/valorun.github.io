@@ -1,4 +1,4 @@
-# Valorun OÜ — Ingénierie IA & conseil
+# Valorun OÜ · Ingénierie IA & conseil
 
 Site vitrine statique bilingue de **Valorun OÜ**, conçu pour GitHub Pages. **Aucune compilation, installation Node ou dépendance JavaScript.**
 
