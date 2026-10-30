@@ -92,7 +92,7 @@ for path, page in pages.items():
         assert len(page.elements(tag)) == 1, f"{path}: un seul {tag} attendu"
     assert "Valorun OÜ" in "".join(page.text)
     assert len(page.elements("h2")) == 5, f"{path}: section manquante"
-    assert len(page.elements("article")) == 8, f"{path}: offre ou projet manquant"
+    assert len(page.elements("article")) == 9, f"{path}: offre ou projet manquant"
     article_texts = [" ".join(" ".join(parts).split()) for parts in page.articles]
     caius_articles = [text for text in article_texts if "CAIUS" in text]
     assert len(caius_articles) == 1, f"{path}: un seul projet CAIUS attendu"
@@ -115,6 +115,33 @@ for path, page in pages.items():
     for term in expected_contribution:
         assert term.casefold() in caius_articles[0].casefold(), f"{path}: contribution CAIUS manquante : {term}"
     assert "Ronan Collier" not in caius_articles[0], f"{path}: attribution nominative inattendue dans le projet CAIUS"
+    tugi_articles = [text for text in article_texts if "Tugi Tark" in text]
+    assert len(tugi_articles) == 1, f"{path}: un seul projet Tugi Tark attendu"
+    expected_tugi_expertise = {
+        "fr": (
+            "Expertises mobilisées",
+            "agent IA autonome",
+            "utilise les outils métier",
+            "applique les règles propres à chaque opérateur d’iGaming",
+            "détecte les situations relevant du jeu responsable",
+            "analyse ses propres réponses",
+            "intégration aux processus métier",
+            "amélioration continue des réponses",
+        ),
+        "en": (
+            "Areas of expertise",
+            "autonomous AI agent",
+            "uses business tools",
+            "follows each iGaming operator’s rules",
+            "identifies responsible gambling cases",
+            "reviews its own responses",
+            "business workflow integration",
+            "continuous response improvement",
+        ),
+    }[expected_language]
+    for term in expected_tugi_expertise:
+        assert term.casefold() in tugi_articles[0].casefold(), f"{path}: expertise Tugi Tark manquante : {term}"
+    assert "Ronan Collier" not in tugi_articles[0], f"{path}: attribution nominative inattendue dans le projet Tugi Tark"
     assert any(meta.get("name") == "description" and meta.get("content") for meta in page.elements("meta"))
     assert any(meta.get("name") == "viewport" for meta in page.elements("meta"))
     assert {"services", "experience", "approach", "about", "contact", "main-content"} <= page.ids
@@ -155,6 +182,7 @@ for path, page in pages.items():
         "https://valorun.github.io/corvus-website/index.html",
         "https://clarius-robot.com/",
         "https://www.caius.fr/",
+        "https://www.tugitark.com/",
     } <= {link.get("href") for link in page.elements("a")}
     print(f"OK {path.relative_to(ROOT)} — langue, contenu, métadonnées, liens et accessibilité structurelle")
 

@@ -6,7 +6,7 @@ Site vitrine statique bilingue de **Valorun OÜ**, conçu pour GitHub Pages. **A
 - Anglais : `en/index.html`
 - Mise en page et ressources partagées : `assets/`
 - Contact : `valorun@proton.me`
-- Projets cités : [Corvus](https://valorun.github.io/corvus-website/index.html), [CAIUS](https://www.caius.fr/) et les [robots de la Confrérie du boulon](https://clarius-robot.com/)
+- Projets cités : [Corvus](https://valorun.github.io/corvus-website/index.html), [CAIUS](https://www.caius.fr/), [Tugi Tark](https://www.tugitark.com/) et les [robots de la Confrérie du boulon](https://clarius-robot.com/)
 
 ## Voir le site en local
 
@@ -44,7 +44,7 @@ Le fichier `.nojekyll` désactive le traitement Jekyll : aucun thème ni workflo
 ### Avant publication commerciale
 
 - **Compléter les informations légales de Valorun OÜ dans les deux pages.** Les éléments actuellement présents se limitent aux informations connues et ne constituent pas des mentions légales complètes. Ajouter les renseignements applicables à la société : forme et adresse du siège, numéro d’immatriculation, TVA le cas échéant, et coordonnées légales de l’hébergeur retenu. Voir les [informations officielles sur les mentions obligatoires](https://entreprendre.service-public.gouv.fr/vosdroits/F31228).
-- Vérifier les conditions d’utilisation des informations et du logo Corvus, puis confirmer que les projets et les domaines d’expérience présentés peuvent être publiés à ce niveau de détail. Aucun employeur n’est associé à ces exemples dans la section « Projets » ; MindTitan apparaît uniquement dans le parcours.
+- Vérifier les conditions d’utilisation des informations et des logos des projets cités, puis confirmer que les projets et les domaines d’expérience présentés peuvent être publiés à ce niveau de détail. Aucun employeur n’est associé à ces exemples dans la section « Projets » ; MindTitan apparaît uniquement dans le parcours.
 - Une fois l’adresse définitive connue, ajouter une URL canonique et `og:url` propres à chaque langue. Remplacer également les trois liens `rel="alternate"` de chaque en-tête par les URLs HTTPS absolues correspondantes : les moteurs de recherche les attendent pour `hreflang`. Conserver les liens de navigation FR/EN relatifs. Une image de partage peut aussi être ajoutée avec une URL absolue. Aucune adresse de publication n’a été supposée dans le HTML.
 - Mettre à jour la formulation sur l’hébergement dans les informations légales une fois le site réellement déployé.
 
@@ -65,6 +65,8 @@ Les couleurs et les polices sont regroupées au début de `assets/styles.css`. L
 ## Ressources et confidentialité
 
 Le logo original fourni est conservé intact dans le dossier. `assets/logo.webp` en est une version recadrée et optimisée ; les icônes de navigateur en sont dérivées. Le logo du projet Corvus est repris dans `assets/corvus-logo.webp` depuis le site public du projet.
+
+Le logo de Tugi Tark est repris sans modification depuis son site officiel et hébergé localement dans `assets/tugi-tark-logo.svg`. Aucun mécanisme interne ni résultat chiffré non confirmé n’est décrit dans cette carte.
 
 Les polices **DM Sans** et **Instrument Serif** sont hébergées localement sous licence SIL Open Font License. Leurs licences sont incluses dans `assets/fonts/`. Aucun appel à Google Fonts n’est effectué par le site.
 

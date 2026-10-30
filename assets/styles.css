@@ -791,6 +791,11 @@ em {
   filter: drop-shadow(0 12px 24px rgb(5 5 33 / 18%));
 }
 
+.featured-project--tugi .featured-logo {
+  width: min(78%, 320px);
+  filter: none;
+}
+
 .experience-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
