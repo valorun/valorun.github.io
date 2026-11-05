@@ -64,7 +64,7 @@ Les couleurs et les polices sont regroupées au début de `assets/styles.css`. L
 
 ## Ressources et confidentialité
 
-Le logo original fourni est conservé intact dans le dossier. `assets/logo.webp` en est une version recadrée et optimisée ; les icônes de navigateur en sont dérivées. Le logo du projet Corvus est repris dans `assets/corvus-logo.webp` depuis le site public du projet.
+Le logo original fourni est conservé intact dans le dossier. `assets/logo.webp` en est une version recadrée et optimisée ; `assets/logo-mark-102.png` est la variante simplifiée utilisée dans l'en-tête aux petites tailles, et les icônes de navigateur en sont dérivées. Le logo du projet Corvus est repris dans `assets/corvus-logo.webp` depuis le site public du projet.
 
 Le logo de Tugi Tark est repris sans modification depuis son site officiel et hébergé localement dans `assets/tugi-tark-logo.svg`. Aucun mécanisme interne ni résultat chiffré non confirmé n’est décrit dans cette carte.
 
